@@ -1,0 +1,2 @@
+# ideas
+Organize internal ideas
