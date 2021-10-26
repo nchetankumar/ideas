@@ -1,0 +1,73 @@
+<div class="dashboard-container">
+    <div class="createTask" (click)="openDialog()">
+        <button mat-stroked-button color="accent" class="btn-block">CreateTask</button>
+    </div>
+    <h3>List of Challenges/Ideas</h3>
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef>
+          No.
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container>
+    
+      <!-- Title Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>
+          Title
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+      </ng-container>
+    
+      <!-- Description Column -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>
+            Description
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+      </ng-container>
+    
+      <!-- Tag Column -->
+      <ng-container matColumnDef="tag">
+        <th mat-header-cell *matHeaderCellDef>
+          Tag
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.tag}} </td>
+      </ng-container>
+      
+      <!-- Date Column -->
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Date">
+          Date
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+      </ng-container>
+
+      <!-- Count Column -->
+      <ng-container matColumnDef="count">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Count">
+          Count
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.count}} </td>
+      </ng-container>
+      
+      <!-- Votes Column -->
+      <ng-container matColumnDef="votes">
+        <th mat-header-cell *matHeaderCellDef sortActionDescription="Sort by Votes">
+          Votes
+        </th>
+        <td mat-cell *matCellDef="let element" style="cursor: pointer;">  
+          <i class="fa fa-thumbs-up" *ngIf="element.votes" style="color: green;" (click)="upVote(element, 'down')"></i>
+          <i class="fa fa-thumbs-up" *ngIf="!element.votes" (click)="upVote(element, 'up')"></i>
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons 
+    aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>

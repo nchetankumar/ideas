@@ -1,0 +1,12 @@
+.titleContainer{
+    display: flex;
+    .title, .description{
+        display: flex;
+        flex-direction: column;
+        margin-right: 10px;
+    }   
+}
+.tagDropDown{
+    width: 41%;
+    padding: 10px;
+}

@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>Create Task</h1>
+<div mat-dialog-content>
+  <div class="titleContainer">
+    <div class="title">
+      <p>Title*</p>
+      <mat-form-field appearance="fill">
+        <mat-label>Title*</mat-label>
+        <input matInput [(ngModel)]="data.title">
+        <mat-error *ngIf="data.title === ''">Please enter title</mat-error>
+        <mat-error *ngIf="duplicate">Please enter title</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="description">
+      <p>Description*</p>
+      <mat-form-field appearance="fill">
+        <mat-label>Description*</mat-label>
+        <textarea matInput [(ngModel)]="data.description"></textarea>
+        <mat-error *ngIf="data.description === ''">Please enter description</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <p>Tags*</p>
+  <select [(ngModel)]="data.tag" class="tagDropDown">
+    <option *ngFor="let tag of tags">
+      {{tag.viewValue}}
+    </option>
+  </select>
+  <mat-error *ngIf="data.tag === '' && submitted">
+    Please add atleast one tag
+  </mat-error>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button (click)="save()" cdkFocusInitial>Save</button>
+</div>
